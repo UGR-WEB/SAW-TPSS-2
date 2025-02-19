@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>X-Ray Bagaj Tarama Quiz</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="warning-overlay"></div>
+
+    <div class="page-layout">
+        <div class="side-panel left-panel">
+            <img src="images/left-controls.png" alt="Sol Kontroller">
+        </div>
+
+        <div class="main-content">
+            <div class="container">
+                <div class="header">
+                    <div class="info">
+                        <span>Seviye: <span id="level">1</span></span>
+                        <span>Soru: <span id="question-number">1</span>/20</span>
+                        <span>Puan: <span id="score">0</span></span>
+                    </div>
+                    <div class="timer">
+                        Kalan Süre: <span id="time">25</span>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="image-container">
+                        <img id="question-image" src="" alt="Soru Görseli">
+                        <div id="marker" class="marker hidden"></div>
+                    </div>
+                </div>
+
+                <div id="options" class="options-container">
+                    <!-- Seçenekler JavaScript ile eklenecek -->
+                </div>
+
+                <div class="navigation-buttons">
+                    <button id="prev-btn" class="nav-btn">Önceki Soru</button>
+                    <button id="next-btn" class="nav-btn">Sonraki Soru</button>
+                </div>
+            </div>
+
+            <div id="result-container" class="hidden">
+                <h2>Seviye <span id="result-level">1</span> Sonuçları</h2>
+                <p>Toplam Puan: <span id="final-score">0</span></p>
+                <p id="pass-fail-text"></p>
+                <button id="next-level-btn" class="hidden">Sonraki Seviye</button>
+                <button id="retry-btn" class="hidden">Tekrar Dene</button>
+            </div>
+        </div>
+
+        <div class="side-panel right-panel">
+            <img src="images/right-controls.png" alt="Sağ Kontroller">
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

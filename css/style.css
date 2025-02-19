@@ -1,0 +1,404 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    min-height: 100vh;
+}
+
+.page-layout {
+    display: flex;
+    min-height: 100vh;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.side-panel {
+    width: 180px;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-panel img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.main-content {
+    flex: 0 0 800px;
+    width: 800px;
+    min-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.info {
+    display: flex;
+    gap: 20px;
+}
+
+.info span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.timer {
+    font-weight: bold;
+    color: #dc3545;
+    font-size: 18px;
+}
+
+.timer.warning {
+    animation: timerPulse 1s infinite;
+}
+
+.question-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    margin: 0 auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+#question-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 0, 0, 0.6);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.option-btn {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.option-btn.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.nav-btn {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: #218838;
+}
+
+.nav-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#result-container {
+    text-align: center;
+    padding: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+#next-level-btn,
+#retry-btn {
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#next-level-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+#retry-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+#next-level-btn:hover,
+#retry-btn:hover {
+    transform: scale(1.05);
+}
+
+@keyframes timerPulse {
+    0% { transform: scale(1); color: #dc3545; }
+    50% { transform: scale(1.1); color: #ff0000; }
+    100% { transform: scale(1); color: #dc3545; }
+}
+
+.warning-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.warning-overlay.active {
+    animation: timeWarning 1s infinite;
+}
+
+@keyframes timeWarning {
+    0% { background-color: rgba(255, 0, 0, 0.1); }
+    50% { background-color: rgba(255, 0, 0, 0.3); }
+    100% { background-color: rgba(255, 0, 0, 0.1); }
+}
+
+@media (max-width: 1200px) {
+    .side-panel {
+        width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-layout {
+        flex-direction: column;
+    }
+    
+    .main-content {
+        width: 100%;
+        min-width: 0;
+    }
+    
+    .image-container {
+        width: 100%;
+        height: 400px;
+    }
+    
+    .options-container {
+        grid-template-columns: 1fr;
+    }
+}
+/* Mevcut CSS kodlarının sonuna ekleyin */
+
+/* Tablet ve Mobil için Responsive Tasarım */
+@media screen and (max-width: 1024px) {
+    .page-layout {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .side-panel {
+        width: 100%;
+        height: auto;
+        position: static;
+    }
+
+    .side-panel img {
+        max-height: 100px;
+    }
+
+    .main-content {
+        width: 100%;
+        min-width: auto;
+        padding: 10px;
+    }
+
+    .image-container {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3; /* Resim oranını korur */
+    }
+}
+
+/* Mobil için Ek Düzenlemeler */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .info {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .info span {
+        font-size: 14px;
+    }
+
+    .timer {
+        font-size: 16px;
+    }
+
+    .options-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 0 5px;
+    }
+
+    .option-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+    .nav-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    #result-container {
+        padding: 15px;
+    }
+
+    #next-level-btn,
+    #retry-btn {
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+        font-size: 16px;
+    }
+}
+
+/* Küçük Ekranlar için Ek Düzenlemeler */
+@media screen and (max-width: 480px) {
+    .info span {
+        font-size: 12px;
+    }
+
+    .timer {
+        font-size: 14px;
+    }
+
+    .option-btn {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+/* Yatay Mod için Düzenlemeler */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    .page-layout {
+        padding: 5px;
+    }
+
+    .side-panel img {
+        max-height: 60px;
+    }
+
+    .image-container {
+        height: 40vh;
+    }
+
+    .options-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navigation-buttons {
+        flex-direction: row;
+    }
+}
+
+/* Dokunmatik Cihazlar için İyileştirmeler */
+@media (hover: none) {
+    .option-btn,
+    .nav-btn,
+    #next-level-btn,
+    #retry-btn {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .option-btn:active,
+    .nav-btn:active,
+    #next-level-btn:active,
+    #retry-btn:active {
+        transform: scale(0.98);
+    }
+}
